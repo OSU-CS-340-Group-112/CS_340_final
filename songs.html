@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Torches - WORK IN PROGRESS</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" href="styles.css">
+    <script
+  		src="https://code.jquery.com/jquery-3.5.1.js"
+  		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  		crossorigin="anonymous"></script>
+	<script src="bootstrap.js"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href= 'index.html'><button class="btn btn-dark">Home</button></a>
+      <a href= 'artists.html'><button class="btn btn-dark">Artists</button></a>
+      <a href= 'albums.html'><button class="btn btn-dark">Albums</button></a>
+      <a href= 'genres.html'><button class="btn btn-dark">Genres</button></a>
+      <a href= 'genre-intersect.html'><button class="btn btn-dark">Genre Intersect</button></a>
+    </div>
+    <div class="container">
+      <center>
+      <div id="landing-pg">
+      <h1>Songs</h1>
+      <h3>This page allows access to the Songs database entity.</h3>
+      <button class="btn btn-dark">Display all Songs</button>
+      </center>
+    </div>
+ 
+    <div class="form-group">
+        <center>
+            <label for="exampleSong"> <h4>Add a new Song</h4></label>
+            <input type="songName" class="form-control" placeholder="Enter song name">
+            <input type="albumName" class="form-control" placeholder="Enter album name">
+            <input type="artistName" class="form-control" id="exampleArtist" placeholder="Enter artist name">
+            <button class="btn btn-dark">Add</button>
+        </center>
+    </div>
+
+    <div class="filter-form">
+        <center>
+            <label> <h4>Search for a Song</h4></label>
+            <input class="form-control" placeholder="Song...">
+            <button class="btn btn-dark">Search</button>
+        </center>
+    </div>
+  </body>
+</html>
