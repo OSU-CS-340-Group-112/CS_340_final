@@ -1,0 +1,28 @@
+{
+  "name": "cs_340_final",
+  "version": "1.0.0",
+  "description": "final project for CS-340",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSU-CS-340-Group-112/CS_340_final.git"
+  },
+  "keywords": [
+    "express",
+    "sql",
+    "cs340"
+  ],
+  "author": "Sean-Michael Riesterer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OSU-CS-340-Group-112/CS_340_final/issues"
+  },
+  "homepage": "https://github.com/OSU-CS-340-Group-112/CS_340_final#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
