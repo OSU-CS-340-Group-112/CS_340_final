@@ -2,3 +2,5 @@
 node_modules
 #ignore package-lock.json
 package-lock.json
+#ifnore the database config file
+dbcon.js

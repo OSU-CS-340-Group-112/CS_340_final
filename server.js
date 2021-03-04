@@ -10,7 +10,13 @@
 var path = require('path');
 var express = require('express');
 var app = express(); 
-var port = process.env.PORT || 3000;
+
+/* Get port from command line argument */
+var port = process.argv[2];
+
+/* Set mySQL */
+var mysql = require('mysql'); 
+var con = require('./dbcon.js'); 
 
 app.use(express.static('HTML'));
 
@@ -21,5 +27,5 @@ app.get('/', function(req,res) {
 
 /* Start server listening on TCP port */
 app.listen(port,function() {
-    console.log("== Server is listening on port ",port);
+    console.log("== express started on http://localhost:",port);
 });

@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/OSU-CS-340-Group-112/CS_340_final#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   }
 }
