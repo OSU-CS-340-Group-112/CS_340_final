@@ -4,6 +4,7 @@ Repository for our CS340 final project, categorizing music releases.
 Usage:
 
 > 1.run: npm install
+> 
 > 2.run: npm start PORT_NUMBER
 
 
