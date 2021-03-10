@@ -5,6 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "home": "handlebars views/homePage.handlebars -f public/homePageTemplate.js",
+    "artists": "handlebars views/artistsPage.handlebars -f public/artistsPageTemplate.js",
+    "albums": "handlebars views/albumsPage.handlebars -f public/albumsPageTemplate.js",
+    "songs": "handlebars views/songsPage.handlebars -f public/songsPageTemplate.js",
+    "genres": "handlebars views/genresPage.handlebars -f public/genresPageTemplate.js",
+    "intersect": "handlebars views/intersectPage.handlebars -f public/intersectPageTemplate.js",
+    "build": "npm run home & npm run artists & npm run albums & npm run songs & npm run genres & npm run intersect",
+    "prestart": "npm run build",
     "start": "node server.js"
   },
   "repository": {
@@ -23,7 +31,11 @@
   },
   "homepage": "https://github.com/OSU-CS-340-Group-112/CS_340_final#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "handlebars": "^4.7.7",
     "mysql": "^2.18.1"
   }
 }
+
