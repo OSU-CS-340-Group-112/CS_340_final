@@ -1,0 +1,6 @@
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['albumsPage'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div class=\"container\">\n    <center>\n      <div id=\"landing-pg\">\n      <h1>Albums</h1>\n      <h3>This page allows access to the Albums database entity.</h3>\n      <button class=\"btn btn-dark\">Display all Albums</button>\n      <button class=\"btn btn-dark\">Remove Relationship (set artistID FK to NULL)</button>\n      <button class=\"btn btn-dark\">Update genreID</button>\n    </center>\n</div>\n \n<div class=\"form-group\">\n    <center>\n        <label for=\"exampleAlbum\"> <h4>Add a new Album</h4></label>\n        <input type=\"albumName\" class=\"form-control\" placeholder=\"Enter album name\">\n        <input type=\"artistName\" class=\"form-control\" id=\"exampleArtist\" placeholder=\"Enter artist name\">\n        <button class=\"btn btn-dark\">Add</button>\n    </center>\n</div>";
+},"useData":true});
+})();
