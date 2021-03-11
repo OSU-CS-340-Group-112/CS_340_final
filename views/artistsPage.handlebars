@@ -15,19 +15,19 @@
     </center>
 </div>
 
-<table>
-    <thead>
-        <th>ArtistID</th>
-        <th>Artist Name</th>
-        <th>Record Label</th>
-    </thead>
-
-    <tbody>
-        {{#each artist}}
-        <tr>
-            <tb>{{artistID}}</tb>
-            <tb>{{primaryArtist}}</tb>
-            <tb>{{recordLabel}}</tb>
-        </tr>
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <th>ArtistID</th>
+            <th>Artist Name</th>
+            <th>Record Label</th>
+        </thead>
+        <tbody>
+            {{#each artist}}
+            <tr>
+                <td>{{artistID}}</td>
+                <td>{{primaryArtist}}</td>
+                <td>{{recordLabel}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
