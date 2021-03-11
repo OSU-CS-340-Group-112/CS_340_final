@@ -16,8 +16,7 @@ var app = express();
 var port = process.argv[2];
 
 /* Set mySQL variables*/
-var mysql = require('mysql'); 
-var con = require('./dbcon.js'); 
+var mysql = require('./dbcon.js'); 
 
 /* Set bodyParser variable*/
 var bodyParser = require('body-parser');
@@ -25,6 +24,7 @@ var bodyParser = require('body-parser');
 /* App Engine */
 app.engine('handlebars',exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.set('mysql',mysql)
 app.use(express.static('public')); 
 
 /* homePage response */
@@ -34,11 +34,13 @@ app.get('/', function(req,res) {
 
 /* category page response 
 NEED TO ADD LOGIC TO MOVE ON TO 404 IF NOT VALID CATEGORY 
-*/
+
 app.get('/:category',function(req,res,next) {
     let category = req.params.category.toLowerCase();
     res.status(200).render(category+'Page');
 });
+*/
+app.use('/artists',require('./artists.js'));
 
 /* 404 page response */
 app.get('*',function(req,res) {
