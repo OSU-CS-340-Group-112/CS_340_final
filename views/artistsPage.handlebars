@@ -3,10 +3,10 @@
     <div id="landing-pg">
     <h1>Artists</h1>
     <h3>This page allows access to the Artists database entity.</h3>
-    <button class="btn btn-dark">Display all Artists</button>
     </center>
 </div>
 
+<!--
 <div class="form-group">
     <center>
     <label for="exampleArtist"> <h4>Add a new Artist</h4></label>
@@ -14,7 +14,7 @@
     <button class="btn btn-dark">Add</button>
     </center>
 </div>
-
+-->
     <table>
         <thead>
             <th>ArtistID</th>
@@ -31,3 +31,9 @@
             {{/each}}
         </tbody>
     </table>
+
+    <form id="addperson" action="/artists" method="post">
+    Artist Name: <input type="text" name="primaryArtist"><br>
+    Record Label: <input type="text" name="recordLabel"><br>
+    <input type="submit" value="Submit">
+    </form>

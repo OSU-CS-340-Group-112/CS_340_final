@@ -19,7 +19,7 @@ module.exports = function(){
         });
     }
 
-    /* Rout to display all artists */ 
+    /* Route to display all artists */ 
     router.get('/',function(req,res){
         var callbackCount = 0;
         var context = {};
@@ -31,6 +31,21 @@ module.exports = function(){
                 res.render('artistsPage',context);
             }
         }
+    });
+
+    /* Function to Add a person */
+    router.post('/', function(req,res){
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO artist (primaryArtist, recordLabel) VALUES (?,?)";
+        var inserts = [req.body.primaryArtist, req.body.recordLabel];
+        sql  = mysql.pool.query(sql,inserts,function(error,results,fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/artists');
+            }
+        });
     });
 
 
