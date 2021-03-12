@@ -8,6 +8,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.runtime.js" charset="utf-8" defer></script>
     <script src="/artists.js" charset="utf-8" defer></script>
+    {{#each jsscripts}}
+    <script src="/public/deleteartist.js"></script>
+    {{/each}}
   </head>
   <body>
     <div class="navbar">
