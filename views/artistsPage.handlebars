@@ -1,4 +1,6 @@
 <script src="deleteartist.js"></script>
+
+
 <div class="container">
     <center>
     <div id="landing-pg">
@@ -29,6 +31,7 @@
                 <td>{{primaryArtist}}</td>
                 <td>{{recordLabel}}</td>
                 <td><button onclick="deleteArtist({{artistID}})">Delete</button></td>
+                <td><a href="/artists/{{artistID}}">Update</a></td>
             </tr>
             {{/each}}
         </tbody>

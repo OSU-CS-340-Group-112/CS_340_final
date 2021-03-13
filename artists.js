@@ -8,8 +8,8 @@ module.exports = function(){
     var router = express.Router();
 
     /* 
-    ====================SELECT===================== 
-    =============================================== 
+        ====================SELECT===================== 
+        =============================================== 
     */
 
     /* Selector for All artists */ 
@@ -33,13 +33,15 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.person = results[0];
+            context.artist = results[0];
             complete();
         });
     }
+
+    
     /* 
-    ====================DISPLAY==================== 
-    =============================================== 
+        ====================DISPLAY==================== 
+        =============================================== 
     */
 
     /* Route to display all artists */ 
@@ -60,9 +62,9 @@ module.exports = function(){
 
     /* Route to display one artist */
     router.get('/:artistID', function(req, res){
-        callbackCount = 0;
+        var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updateperson.js"];
+        context.jsscripts = ["updateartist.js"];
         var mysql = req.app.get('mysql');
         getArtist(res, mysql, context, req.params.artistID, complete);
         function complete(){
@@ -74,8 +76,8 @@ module.exports = function(){
     });
 
     /* 
-    ====================UPDATE===================== 
-    =============================================== 
+        ====================UPDATE===================== 
+        =============================================== 
     */
 
     /* Route to add an artist */
@@ -100,8 +102,19 @@ module.exports = function(){
     router.put('/:artistID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE artist SET primaryArtist=?, recordLabel=? WHERE artistID=?";
-        var inserts = [req.body.primaryArtist, req.body.recordLabel]
-    })
+        var inserts = [req.body.primaryArtist, req.body.recordLabel, req.params.artistID];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                console.log(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
+
 
     /* Route to delete an artist */
     router.delete('/:artistID', function(req, res){

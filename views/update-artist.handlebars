@@ -1,0 +1,19 @@
+<script>
+    function updateArtist(artistID){
+    $.ajax({
+        url: '/artists/' + artistID,
+        type: 'PUT',
+        data: $('#update-artist').serialize(),
+        success: function(result){
+            window.location.replace("./");
+        }
+    })
+};
+</script>
+
+<h1>Update {{artist.primaryArtist}} {{artist.recordLabel}}:</h1>
+<form id="update-artist" action="/artists" method="post">
+    Artist Name: <input type="text" name="primaryArtist" value="{{artist.primaryArtist}}"><br>
+    Record Label: <input type="text" name="recordLabel" value="{{artist.recordLabel}}"><br>
+</form>
+<button id="update"onclick="updateArtist({{artist.artistID}})">Update</button>
