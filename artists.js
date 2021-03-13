@@ -7,6 +7,11 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
+    /* 
+    ====================SELECT===================== 
+    =============================================== 
+    */
+
     /* Selector for All artists */ 
     function getArtists(res,mysql,context,complete){
         mysql.pool.query("SELECT artistID, primaryArtist, recordLabel FROM artist",function(error,results,fields){
@@ -20,7 +25,7 @@ module.exports = function(){
     }
 
     /* Selector for one artist */
-    function getArtist(res, mysql, context, id, complete){
+    function getArtist(res, mysql, context, artistID, complete){
         var sql = "SELECT artistID, primaryArtist, recordLabel FROM artist WHERE artistID = ?";
         var inserts = [artistID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
@@ -32,6 +37,10 @@ module.exports = function(){
             complete();
         });
     }
+    /* 
+    ====================DISPLAY==================== 
+    =============================================== 
+    */
 
     /* Route to display all artists */ 
     router.get('/',function(req,res){
@@ -48,9 +57,28 @@ module.exports = function(){
         }
     });
 
-    
 
-    /* Route to add an artists */
+    /* Route to display one artist */
+    router.get('/:artistID', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["updateperson.js"];
+        var mysql = req.app.get('mysql');
+        getArtist(res, mysql, context, req.params.artistID, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('update-artist',context);
+            }
+        }
+    });
+
+    /* 
+    ====================UPDATE===================== 
+    =============================================== 
+    */
+
+    /* Route to add an artist */
     router.post('/', function(req,res){
         console.log(req.body)
         var mysql = req.app.get('mysql');
@@ -66,6 +94,14 @@ module.exports = function(){
             }
         });
     });
+
+
+    /* Route to update an artist */
+    router.put('/:artistID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "UPDATE artist SET primaryArtist=?, recordLabel=? WHERE artistID=?";
+        var inserts = [req.body.primaryArtist, req.body.recordLabel]
+    })
 
     /* Route to delete an artist */
     router.delete('/:artistID', function(req, res){
