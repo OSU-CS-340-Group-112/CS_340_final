@@ -1,19 +1,34 @@
+<script src="deletealbum.js"></script>
+
+
 <div class="container">
     <center>
-      <div id="landing-pg">
-      <h1>Albums</h1>
-      <h3>This page allows access to the Albums database entity.</h3>
-      <button class="btn btn-dark">Display all Albums</button>
-      <button class="btn btn-dark">Remove Relationship (set artistID FK to NULL)</button>
-      <button class="btn btn-dark">Update genreID</button>
+    <div id="landing-pg">
+    <h1>Albums</h1>
+    <h3>This page allows access to the Albums in the database.</h3>
     </center>
 </div>
- 
-<div class="form-group">
-    <center>
-        <label for="exampleAlbum"> <h4>Add a new Album</h4></label>
-        <input type="albumName" class="form-control" placeholder="Enter album name">
-        <input type="artistName" class="form-control" id="exampleArtist" placeholder="Enter artist name">
-        <button class="btn btn-dark">Add</button>
-    </center>
-</div>
+    <table>
+        <thead>
+            <th>AlbumID</th>
+            <th>Featued Artist</th>
+            <th>Album Title</th>
+        </thead>
+        <tbody>
+            {{#each album}}
+            <tr>
+                <td>{{albumID}}</td>
+                <td>{{featuredArtist}}</td>
+                <td>{{albumTitle}}</td>
+                <td><button onclick="deleteAlbum({{albumID}})">Delete</button></td>
+                <td><a href="/album/{{albumID}}">Update</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <form id="addalbum" action="/album" method="post">
+    Featured Artist: <input type="text" name="featuredArtist"><br>
+    Album Title: <input type="text" name="album"><br>
+    <input type="submit" value="Submit">
+    </form>

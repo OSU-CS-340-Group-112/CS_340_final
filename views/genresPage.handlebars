@@ -1,17 +1,31 @@
+<script src="deleteGenre.js"></script>
+
+
 <div class="container">
     <center>
     <div id="landing-pg">
     <h1>Genres</h1>
-    <h3>This page allows access to the Genres database entity.</h3>
-    <button class="btn btn-dark">Display all Genres</button>
-    <button class="btn btn-dark">Delete a Genre</button>
+    <h3>This page allows access to the Genres in the database.</h3>
     </center>
 </div>
+    <table>
+        <thead>
+            <th>GenreID</th>
+            <th>Name</th>
+            <th>Album Title</th>
+        </thead>
+        <tbody>
+            {{#each genre}}
+            <tr>
+                <td>{{genreID}}</td>
+                <td>{{genreName}}</td>
+                <td><button onclick="deleteGenre({{genreID}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
-<div class="form-group">
-    <center>
-    <label for="exampleArtist"> <h4>Add a new Genre</h4></label>
-    <input type="name" class="form-control" id="exampleArtist" placeholder="Enter genre">
-    <button class="btn btn-dark">Add</button>
-    </center>
-</div>
+    <form id="addgenre" action="/genre" method="post">
+    Genre Name: <input type="text" name="genreName"><br>
+    <input type="submit" value="Submit">
+    </form>

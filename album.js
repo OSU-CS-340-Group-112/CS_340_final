@@ -1,5 +1,5 @@
 /* 
- * Author: Sean-Michael Riesterer
+ * Author: Lucas Tolliver/ Sean
  * Credit: Starter code from CS340-Sample-Web-App by wolfordj
  */
 
@@ -12,64 +12,63 @@ module.exports = function(){
         =============================================== 
     */
 
-    /* Selector for All artists */ 
-    function getArtists(res,mysql,context,complete){
-        mysql.pool.query("SELECT artistID, primaryArtist, recordLabel FROM artist",function(error,results,fields){
+    /* Selector for All albums */ 
+    function getAlbums(res,mysql,context,complete){
+        mysql.pool.query("SELECT albumID, featuredArtist, albumTitle FROM album",function(error,results,fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.artist = results;
+            context.album = results;
             complete(); 
         });
     }
 
-    /* Selector for one artist */
-    function getArtist(res, mysql, context, artistID, complete){
-        var sql = "SELECT artistID, primaryArtist, recordLabel FROM artist WHERE artistID = ?";
-        var inserts = [artistID];
+    /* Selector for one album */
+    function getAlbum(res, mysql, context, albumID, complete){
+        var sql = "SELECT albumID, featuredArtist, albumTitle FROM album WHERE albumID = ?";
+        var inserts = [albumID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.artist = results[0];
+            context.album = results[0];
             complete();
         });
     }
-
     /* 
         ====================DISPLAY==================== 
         =============================================== 
     */
 
-    /* Route to display all artists */ 
+    /* Route to display all albums */ 
     router.get('/',function(req,res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteartist.js"];
+        context.jsscripts = ["deletealbum.js"];
         var mysql = req.app.get('mysql');
-        getArtists(res,mysql,context,complete);
+        getAlbums(res,mysql,context,complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('artistsPage',context);
+                res.render('albumsPage',context);
             }
         }
     });
 
 
-    /* Route to display one artist */
-    router.get('/:artistID', function(req, res){
+    /* Route to display one album */
+    router.get('/:albumID', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updateartist.js"];
+        context.jsscripts = ["updatealbum.js"];
         var mysql = req.app.get('mysql');
-        getArtist(res, mysql, context, req.params.artistID, complete);
+        getAlbum(res, mysql, context, req.params.albumID, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('update-artist',context);
+                res.render('update-album',context);
             }
         }
     });
@@ -79,29 +78,29 @@ module.exports = function(){
         =============================================== 
     */
 
-    /* Route to add an artist */
+    /* Route to add an album */
     router.post('/', function(req,res){
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO artist (primaryArtist, recordLabel) VALUES (?,?)";
-        var inserts = [req.body.primaryArtist, req.body.recordLabel];
+        var sql = "INSERT INTO album (featuredArtist, albumTitle) VALUES (?,?)";
+        var inserts = [req.body.featuredArtist, req.body.albumTitle];
         sql  = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error));
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/artists');
+                res.redirect('/album');
             }
         });
     });
 
 
-    /* Route to update an artist */
-    router.put('/:artistID', function(req, res){
+    /* Route to update an album */
+    router.put('/:albumID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE artist SET primaryArtist=?, recordLabel=? WHERE artistID=?";
-        var inserts = [req.body.primaryArtist, req.body.recordLabel, req.params.artistID];
+        var sql = "UPDATE album SET featuredArtist=?, albumTitle=? WHERE albumID=?";
+        var inserts = [req.body.featuredArtist, req.body.albumTitle, req.params.albumID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -115,11 +114,11 @@ module.exports = function(){
     });
 
 
-    /* Route to delete an artist */
-    router.delete('/:artistID', function(req, res){
+    /* Route to delete an aalbum */
+    router.delete('/:albumID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM artist WHERE artistID = ?";
-        var inserts = [req.params.artistID];
+        var sql = "DELETE FROM album WHERE albumID = ?";
+        var inserts = [req.params.albumID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

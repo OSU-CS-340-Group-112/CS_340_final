@@ -1,0 +1,20 @@
+<script>
+    function updateAlbum(albumID){
+    $.ajax({
+        url: '/album/' + albumID,
+        type: 'PUT',
+        data: $('#update-album').serialize(),
+        success: function(result){
+            window.location.replace("./");
+        }
+    })
+};
+};
+</script>
+
+<h1>Update {{album.featuredArtist}} {{album.albumTitle}}:</h1>
+<form id="update-album" action="/album" method="post">
+    Featured Artist: <input type="text" name="featuredArtist" value="{{album.featuredArtist}}"><br>
+    Album Title: <input type="text" name="albumTitle" value="{{album.albumTitle}}"><br>
+</form>
+<button id="update"onclick="updateAlbum({{album.albumID}})">Update</button>
