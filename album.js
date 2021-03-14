@@ -90,7 +90,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/album');
+                res.redirect('/albums');
             }
         });
     });
@@ -114,7 +114,7 @@ module.exports = function(){
     });
 
 
-    /* Route to delete an aalbum */
+    /* Route to delete an album */
     router.delete('/:albumID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM album WHERE albumID = ?";

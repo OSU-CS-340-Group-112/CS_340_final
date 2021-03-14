@@ -21,14 +21,14 @@
                 <td>{{featuredArtist}}</td>
                 <td>{{albumTitle}}</td>
                 <td><button onclick="deleteAlbum({{albumID}})">Delete</button></td>
-                <td><a href="/album/{{albumID}}">Update</a></td>
+                <td><a href="/albums/{{albumID}}">Update</a></td>
             </tr>
             {{/each}}
         </tbody>
     </table>
 
-    <form id="addalbum" action="/album" method="post">
+    <form id="addalbum" action="/albums" method="post">
     Featured Artist: <input type="text" name="featuredArtist"><br>
-    Album Title: <input type="text" name="album"><br>
+    Album Title: <input type="text" name="albumTitle"><br>
     <input type="submit" value="Submit">
     </form>

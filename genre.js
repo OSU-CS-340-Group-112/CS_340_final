@@ -61,7 +61,7 @@ module.exports = function(){
         });
     });
     
-    /* Route to delete an artist */
+    /* Route to delete a Genre */
     router.delete('/:genreID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM genre WHERE genreID = ?";

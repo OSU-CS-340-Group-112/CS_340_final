@@ -36,6 +36,12 @@ app.get('/', function(req,res) {
 /* Artist Page Response */
 app.use('/artists',require('./artists.js'));
 
+/* Album Page Response */
+app.use('/albums',require('./album.js'));
+
+/* Genre Page Response */
+app.use('/genres',require('./genre.js'));
+
 /* 404 page response */
 app.get('*',function(req,res) {
     res.status(404).render('404');

@@ -1,6 +1,6 @@
 function updateAlbum(albumID){
     $.ajax({
-        url: '/album/' + albumID,
+        url: '/albums/' + albumID,
         type: 'PUT',
         data: $('#update-album').serialize(),
         success: function(result){

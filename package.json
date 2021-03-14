@@ -9,10 +9,11 @@
     "artists": "handlebars views/artistsPage.handlebars -f public/artistsPageTemplate.js",
     "update-artist": "handlebars views/update-artist.handlebars -f public/update-artistTemplate.js",
     "albums": "handlebars views/albumsPage.handlebars -f public/albumsPageTemplate.js",
+    "update-albums": "handlebars views/update-album.handlebars -f public/update-AlbumTemplate.js",
     "songs": "handlebars views/songsPage.handlebars -f public/songsPageTemplate.js",
     "genres": "handlebars views/genresPage.handlebars -f public/genresPageTemplate.js",
     "intersect": "handlebars views/intersectPage.handlebars -f public/intersectPageTemplate.js",
-    "build": "npm run home & npm run artists & npm run update-artist & npm run albums & npm run songs & npm run genres & npm run intersect",
+    "build": "npm run home & npm run artists & npm run update-artist & npm run albums & npm run update-albums & npm run songs & npm run genres & npm run intersect",
     "prestart": "npm run build",
     "start": "node server.js"
   },

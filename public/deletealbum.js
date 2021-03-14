@@ -5,7 +5,7 @@
 
 function deleteAlbum(albumID){
     $.ajax({
-        url: '/album/' + albumID,
+        url: '/albums/' + albumID,
         type: 'DELETE',
         success: function(result){
             window.location.reload(true);
