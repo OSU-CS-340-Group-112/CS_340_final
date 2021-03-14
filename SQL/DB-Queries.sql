@@ -43,6 +43,7 @@ UNLOCK TABLES;
 #table: song
 DROP TABLE IF EXISTS `song`;
 CREATE TABLE `song` (
+    `songID` int(11) NOT NULL AUTO_INCREMENT,
     `songTitle` varchar(255) NOT NULL,
     `alID` int(11) NOT NULL,
     `runTime` int(128) NOT NULL,
@@ -55,15 +56,15 @@ CREATE TABLE `song` (
 #insert song
 LOCK TABLES `song` WRITE;
 INSERT INTO `song` VALUES
-    ('EW', 1, '208', 'ANTONIO NORWOOD'),
-    ('TICK TOCK', 1, '122', 'GEORGE MILLER'),
-    ('DAYLIGHT', 1, '164', 'GEORGE MILLER'),
-    ('HOTLINE BLING', 2, '267', 'DRAKE'),
-    ('VIEWS', 2, '312', 'DRAKE'),
-    ('TOO GOOD', 2, '263', 'DRAKE'),
-    ('BLOOD', 3, '118', 'KL'),
-    ('DNA', 3, '185', 'KL'),
-    ('FEEL', 3, '214', 'KL');
+    (1, 'EW', 1, '208', 'ANTONIO NORWOOD'),
+    (2, 'TICK TOCK', 1, '122', 'GEORGE MILLER'),
+    (3, 'DAYLIGHT', 1, '164', 'GEORGE MILLER'),
+    (4, 'HOTLINE BLING', 2, '267', 'DRAKE'),
+    (5, 'VIEWS', 2, '312', 'DRAKE'),
+    (6, 'TOO GOOD', 2, '263', 'DRAKE'),
+    (7, 'BLOOD', 3, '118', 'KL'),
+    (8, 'DNA', 3, '185', 'KL'),
+    (9, 'FEEL', 3, '214', 'KL');
 UNLOCK TABLES;
 
 #table: genre
