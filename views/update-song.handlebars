@@ -1,0 +1,21 @@
+<script>
+    function updateSong(songID){
+    $.ajax({
+        url: '/song/' + songID,
+        type: 'PUT',
+        data: $('#update-song').serialize(),
+        success: function(result){
+            window.location.replace("./");
+        }
+    })
+};
+
+</script>
+
+<h1>Update {{song.songTitle}} {{song.runTime}} {{song.writingCredit}}:</h1>
+<form id="update-song" action="/song" method="post">
+    Song Title: <input type="text" name="songTitle" value="{{song.songTitle}}"><br>
+    Run Time: <input type="number" name="runTime" value="{{song.runTime}}"><br>
+    Writing Credit: <input type="text" name="writingCrdit" value="{{song.writingCredit}}"><br>
+</form>
+<button id="update"onclick="updateSong({{song.songID}})">Update</button>

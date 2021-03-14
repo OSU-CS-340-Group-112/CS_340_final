@@ -96,7 +96,40 @@ module.exports = function(){
     });
 
 
+    /* Route to update an song */
+    router.put('/:songID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "UPDATE song SET songTitle=?, runTime=?, writingCredit=? WHERE songID=?";
+        var inserts = [req.body.songTitle, req.body.runTime, red.body.writingCredit, req.params.songID];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                console.log(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
 
+
+    /* Route to delete an song */
+    router.delete('/:songID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM song WHERE songID = ?";
+        var inserts = [req.params.songID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                console.log(JSON.stringify(error));
+                res.status(400);
+                res.end();
+            }else{
+                res.status(202).end();
+            }
+        });
+    });
 
 
     return router;

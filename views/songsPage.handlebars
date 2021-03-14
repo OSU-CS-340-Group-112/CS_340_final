@@ -1,30 +1,35 @@
-<main class = "content">    
-    
-    <div class="container">
-        <center>
-        <div id="landing-pg">
-        <h1>Songs</h1>
-        <h3>This page allows access to the Songs database entity.</h3>
-        <button class="btn btn-dark">Display all Songs</button>
-        </center>
-    </div>
- 
-    <div class="form-group">
-        <center>
-            <label for="exampleSong"> <h4>Add a new Song</h4></label>
-            <input type="songName" class="form-control" placeholder="Enter song name">
-            <input type="albumName" class="form-control" placeholder="Enter album name">
-            <input type="artistName" class="form-control" id="exampleArtist" placeholder="Enter artist name">
-            <button class="btn btn-dark">Add</button>
-        </center>
-    </div>
+<script src="deletesong.js"></script>
 
-    <div class="filter-form">
-        <center>
-            <label> <h4>Search for a Song</h4></label>
-            <input class="form-control" placeholder="Song...">
-            <button class="btn btn-dark">Search</button>
-        </center>
-    </div>
 
-</main>
+<div class="container">
+    <center>
+    <div id="landing-pg">
+    <h1>Songs</h1>
+    <h3>This page allows access to the Songs in the database.</h3>
+    </center>
+</div>
+    <table>
+        <thead>
+            <th>SongTitle</th>
+            <th>Run Time</th>
+            <th>Writing Credit</th>
+        </thead>
+        <tbody>
+            {{#each song}}
+            <tr>
+                <td>{{songTitle}}</td>
+                <td>{{Run Time}}</td>
+                <td>{{Writing Credit}}</td>
+                <td><button onclick="deleteSong({{songID}})">Delete</button></td>
+                <td><a href="/song/{{songID}}">Update</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <form id="addsong" action="/songs" method="post">
+    Song Title: <input type="text" name="songTitle"><br>
+    Run Time (in seconds): <input type="number" name="runTime"><br>
+    Writing Credit: <input type="text" name="writingCredit"><br>
+    <input type="submit" value="Submit">
+    </form>
