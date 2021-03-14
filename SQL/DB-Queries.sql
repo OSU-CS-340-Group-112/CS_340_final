@@ -49,6 +49,7 @@ CREATE TABLE `song` (
     `runTime` int(128) NOT NULL,
     `writingCredit` varchar(255) NOT NULL,
     UNIQUE KEY `songTitle` (`songTitle`),
+    PRIMARY KEY (`songID`),
     KEY `alID` (`alID`),
     CONSTRAINT `song_ibfk1` FOREIGN KEY (`alID`) REFERENCES `album` (`albumID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
