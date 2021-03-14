@@ -12,7 +12,7 @@ module.exports = function(){
         =============================================== 
     */
 
-    /* Selector for All albums */ 
+    /* Selector for All songs */ 
     function getSongs(res,mysql,context,complete){
         mysql.pool.query("SELECT songTitle, alID, runTime, writingCredit FROM song",function(error,results,fields){
             if(error){
@@ -24,7 +24,7 @@ module.exports = function(){
         });
     }
 
-    /* Selector for one album */
+    /* Selector for one song */
     function getSong(res, mysql, context, songID, complete){
         var sql = "SELECT songTitle, alID, runTime, writingCredit FROM song WHERE songID = ?";
         var inserts = [songID];
@@ -38,3 +38,38 @@ module.exports = function(){
         });
     }
     /* 
+        ====================DISPLAY==================== 
+        =============================================== 
+    */
+
+    /* Route to display all songs */ 
+    router.get('/',function(req,res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletesong.js"];
+        var mysql = req.app.get('mysql');
+        getSongs(res,mysql,context,complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('songsPage',context);
+            }
+        }
+    });
+
+
+    /* Route to display one song */
+    router.get('/:songID', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["updatesong.js"];
+        var mysql = req.app.get('mysql');
+        getSong(res, mysql, context, req.params.songID, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('update-song',context);
+            }
+        }
+    });
+    

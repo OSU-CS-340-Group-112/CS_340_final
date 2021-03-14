@@ -21,15 +21,15 @@ UNLOCK TABLES;
 #table: album
 DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
-    `artistID` int(11) NOT NULL,
+    `artID` int(11) NOT NULL,
     `featuredArtist` varchar(255) NOT NULL,
     `albumTitle` varchar(255) NOT NULL,
     `albumID` int(11) NOT NULL AUTO_INCREMENT,
     UNIQUE KEY `featuredArtist` (`featuredArtist`),
     UNIQUE KEY `albumTitle` (`albumTitle`),
     PRIMARY KEY (`albumID`),
-    KEY `artID` (`artistID`),
-    CONSTRAINT `album_ibfk1` FOREIGN KEY (`artistID`) REFERENCES `artist` (`artistID`)
+    KEY `artID` (`artID`),
+    CONSTRAINT `album_ibfk1` FOREIGN KEY (`artID`) REFERENCES `artist` (`artistID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 #insert album
