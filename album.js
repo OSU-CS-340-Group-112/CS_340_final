@@ -14,13 +14,24 @@ module.exports = function(){
         ====================SELECT===================== 
         =============================================== 
     */
-
+    /* Selector for All artists */ 
+    function getArtists(res,mysql,context,complete){
+        mysql.pool.query("SELECT artistID, primaryArtist FROM artist",function(error,results,fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.artists = results;
+            complete(); 
+        });
+    }
 
     /* Selector for All albums */ 
     function getAlbums(res,mysql,context,complete){
-        mysql.pool.query("SELECT albumID, featuredArtist, albumTitle FROM album",function(error,results,fields){
+        mysql.pool.query("SELECT albumID, albumTitle, featuredArtist FROM album", function(error,results,fields){
             if(error){
                 res.write(JSON.stringify(error));
+                console.log(JSON.stringify(error));
                 res.end();
             }
             context.album = results;
@@ -53,9 +64,10 @@ module.exports = function(){
         context.jsscripts = ["deletealbum.js"];
         var mysql = req.app.get('mysql');
         getAlbums(res,mysql,context,complete);
+        getArtists(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('albumsPage',context);
             }
         }

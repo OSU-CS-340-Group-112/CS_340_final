@@ -18,7 +18,7 @@ templates['update-song'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"song") : depth0)) != null ? lookupProperty(stack1,"songTitle") : stack1), depth0))
     + "\"><br>\n    Run Time: <input type=\"number\" name=\"runTime\" value=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"song") : depth0)) != null ? lookupProperty(stack1,"runTime") : stack1), depth0))
-    + "\"><br>\n    Writing Credit: <input type=\"text\" name=\"writingCrdit\" value=\""
+    + "\"><br>\n    Writing Credit: <input type=\"text\" name=\"writingCredit\" value=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"song") : depth0)) != null ? lookupProperty(stack1,"writingCredit") : stack1), depth0))
     + "\"><br>\n</form>\n<button id=\"update\"onclick=\"updateSong("
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"song") : depth0)) != null ? lookupProperty(stack1,"songID") : stack1), depth0))
