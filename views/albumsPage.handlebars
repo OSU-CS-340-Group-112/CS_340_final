@@ -28,7 +28,11 @@
     </table>
 
     <form id="addalbum" action="/albums" method="post">
-    Featured Artist: <input type="text" name="featuredArtist"><br>
     Album Title: <input type="text" name="albumTitle"><br>
+    Artist: <select name="primaryArtist">
+        {{#each artists}}
+        <option value="{{artistID}}">{{primaryArtist}}</option>
+        {{/each}}
+    </select>
     <input type="submit" value="Submit">
     </form>

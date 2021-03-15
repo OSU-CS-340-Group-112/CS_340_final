@@ -1,14 +1,18 @@
 <script>
     function updateAlbum(albumID){
-    $.ajax({
-        url: '/albums/' + albumID,
-        type: 'PUT',
-        data: $('#update-album').serialize(),
-        success: function(result){
-            window.location.replace("./");
-        }
-    })
-};
+        $.ajax({
+            url: '/albums/' + albumID,
+            type: 'PUT',
+            data: $('#update-album').serialize(),
+            success: function(result){
+                window.location.replace("./");
+            }
+        })
+    };
+
+    function selectArtist(artistID){
+        $("#artist-selector").val(artistID);
+    }
 
 </script>
 
@@ -16,5 +20,10 @@
 <form id="update-album" action="/album" method="post">
     Featured Artist: <input type="text" name="featuredArtist" value="{{album.featuredArtist}}"><br>
     Album Title: <input type="text" name="albumTitle" value="{{album.albumTitle}}"><br>
+    Featured Artist: <select name="featuredArtist" id="artist-selector">
+        {{#each artists}}
+        <option value="{{artistID}}">{{primaryArtist}}</option>
+        {{/each}}
+    </select>
 </form>
-<button id="update"onclick="updateAlbum({{album.albumID}})">Update</button>
+<button id="update"onclick="selectArtist({{artistID}}) updateAlbum({{album.albumID}})">Update</button>
