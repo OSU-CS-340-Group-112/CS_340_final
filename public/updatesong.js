@@ -1,6 +1,6 @@
 function updateSong(songID){
     $.ajax({
-        url: '/song/' + songID,
+        url: '/songs/' + songID,
         type: 'PUT',
         data: $('#update-song').serialize(),
         success: function(result){

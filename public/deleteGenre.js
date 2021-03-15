@@ -5,7 +5,7 @@
 
 function deleteGenre(genreID){
     $.ajax({
-        url: '/genre/' + genreID,
+        url: '/genres/' + genreID,
         type: 'DELETE',
         success: function(result){
             window.location.reload(true);

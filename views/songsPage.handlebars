@@ -10,18 +10,22 @@
 </div>
     <table>
         <thead>
+            <th>SongID</th>
             <th>SongTitle</th>
-            <th>Run Time</th>
+            <th>alID</th>
+            <th>Runtime</th>
             <th>Writing Credit</th>
         </thead>
         <tbody>
             {{#each song}}
             <tr>
+                <td>{{songID}}</td> 
                 <td>{{songTitle}}</td>
-                <td>{{Run Time}}</td>
-                <td>{{Writing Credit}}</td>
+                <td>{{alID}}</td>
+                <td>{{runTime}}</td>
+                <td>{{writingCredit}}</td>
                 <td><button onclick="deleteSong({{songID}})">Delete</button></td>
-                <td><a href="/song/{{songID}}">Update</a></td>
+                <td><a href="/songs/{{songID}}">Update</a></td>
             </tr>
             {{/each}}
         </tbody>

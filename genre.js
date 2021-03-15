@@ -12,14 +12,14 @@ module.exports = function(){
         =============================================== 
     */
 
-    /* Selector for All artists */ 
+    /* Selector for All Genres */ 
     function getGenres(res,mysql,context,complete){
         mysql.pool.query("SELECT genreID, genreName FROM genre",function(error,results,fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.artist = results;
+            context.genre = results;
             complete(); 
         });
     }
@@ -29,22 +29,22 @@ module.exports = function(){
         =============================================== 
     */
 
-    /* Route to display all artists */ 
+    /* Route to display all genres */ 
     router.get('/',function(req,res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deletegenre.js"];
         var mysql = req.app.get('mysql');
-        getArtists(res,mysql,context,complete);
+        getGenres(res,mysql,context,complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('genrePage',context);
+                res.render('genresPage',context);
             }
         }
     });
     
-    /* Route to add an artist */
+    /* Route to add a genre */
     router.post('/', function(req,res){
         console.log(req.body)
         var mysql = req.app.get('mysql');
@@ -56,7 +56,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/genre');
+                res.redirect('/genres');
             }
         });
     });
@@ -65,7 +65,7 @@ module.exports = function(){
     router.delete('/:genreID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM genre WHERE genreID = ?";
-        var inserts = [req.params.artistID];
+        var inserts = [req.params.genreID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

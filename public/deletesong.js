@@ -5,7 +5,7 @@
 
 function deleteSong(songID){
     $.ajax({
-        url: '/song/' + songID,
+        url: '/songs/' + songID,
         type: 'DELETE',
         success: function(result){
             window.location.reload(true);

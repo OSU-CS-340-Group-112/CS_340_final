@@ -14,7 +14,7 @@ module.exports = function(){
 
     /* Selector for All songs */ 
     function getSongs(res,mysql,context,complete){
-        mysql.pool.query("SELECT songTitle, alID, runTime, writingCredit FROM song",function(error,results,fields){
+        mysql.pool.query("SELECT songID, songTitle, alID, runTime, writingCredit FROM song",function(error,results,fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -26,7 +26,7 @@ module.exports = function(){
 
     /* Selector for one song */
     function getSong(res, mysql, context, songID, complete){
-        var sql = "SELECT songTitle, alID, runTime, writingCredit FROM song WHERE songID = ?";
+        var sql = "SELECT songID, songTitle, alID, runTime, writingCredit FROM song WHERE songID = ?";
         var inserts = [songID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -83,7 +83,7 @@ module.exports = function(){
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO song (songTitle, runTime, writingCredit) VALUES (?,?,?)";
-        var inserts = [req.body.songTitle, req.body.runTime, reg.body.writingCredit];
+        var inserts = [req.body.songTitle, req.body.runTime, req.body.writingCredit];
         sql  = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error));
@@ -100,7 +100,7 @@ module.exports = function(){
     router.put('/:songID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE song SET songTitle=?, runTime=?, writingCredit=? WHERE songID=?";
-        var inserts = [req.body.songTitle, req.body.runTime, red.body.writingCredit, req.params.songID];
+        var inserts = [req.body.songTitle, req.body.runTime, req.body.writingCredit, req.params.songID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

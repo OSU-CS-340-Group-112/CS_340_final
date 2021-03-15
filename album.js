@@ -3,7 +3,10 @@
  * Credit: Starter code from CS340-Sample-Web-App by wolfordj
  */
 
+
+
 module.exports = function(){
+
     var express = require('express');
     var router = express.Router();
 
@@ -11,6 +14,7 @@ module.exports = function(){
         ====================SELECT===================== 
         =============================================== 
     */
+
 
     /* Selector for All albums */ 
     function getAlbums(res,mysql,context,complete){

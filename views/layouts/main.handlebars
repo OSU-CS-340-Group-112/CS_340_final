@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.runtime.js" charset="utf-8" defer></script>
     <script src="/artists.js" charset="utf-8" defer></script>
     {{#each jsscripts}}
-    <script src="/public/deleteartist.js"></script>
+    <script src="/static/{{this}}"></script>
     {{/each}}
   </head>
   <body>
