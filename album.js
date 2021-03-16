@@ -28,7 +28,7 @@ module.exports = function(){
 
     /* Selector for All albums */ 
     function getAlbums(res,mysql,context,complete){
-        mysql.pool.query("SELECT albumID, albumTitle, featuredArtist FROM album", function(error,results,fields){
+        mysql.pool.query("SELECT albumTitle, albumID, artist.primaryArtist AS artID FROM album INNER JOIN artist ON artID = artist.artistID", function(error,results,fields){
             if(error){
                 res.write(JSON.stringify(error));
                 console.log(JSON.stringify(error));
@@ -41,7 +41,7 @@ module.exports = function(){
 
     /* Selector for one album */
     function getAlbum(res, mysql, context, albumID, complete){
-        var sql = "SELECT albumID, featuredArtist, albumTitle FROM album WHERE albumID = ?";
+        var sql = "SELECT albumID, originalArtist, albumTitle FROM album WHERE albumID = ?";
         var inserts = [albumID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -98,8 +98,8 @@ module.exports = function(){
     router.post('/', function(req,res){
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO album (featuredArtist, albumTitle) VALUES (?,?)";
-        var inserts = [req.body.featuredArtist, req.body.albumTitle];
+        var sql = "INSERT INTO album (albumTitle, artID) VALUES (?,?)";
+        var inserts = [req.body.albumTitle, req.body.artID];
         sql  = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error));
@@ -115,8 +115,8 @@ module.exports = function(){
     /* Route to update an album */
     router.put('/:albumID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE album SET featuredArtist=?, albumTitle=? WHERE albumID=?";
-        var inserts = [req.body.featuredArtist, req.body.albumTitle, req.params.albumID];
+        var sql = "UPDATE album SET originalArtist=?, albumTitle=? WHERE albumID=?";
+        var inserts = [req.body.originalArtist, req.body.albumTitle, req.params.albumID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

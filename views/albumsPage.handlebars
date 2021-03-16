@@ -10,16 +10,16 @@
 </div>
     <table>
         <thead>
-            <th>AlbumID</th>
-            <th>Featued Artist</th>
+            <th>Artist</th>
             <th>Album Title</th>
+            <th>albumID</th>
         </thead>
         <tbody>
             {{#each album}}
             <tr>
-                <td>{{albumID}}</td>
-                <td>{{featuredArtist}}</td>
+                <td>{{artID}}</td>
                 <td>{{albumTitle}}</td>
+                <td>{{albumID}}</td>
                 <td><button onclick="deleteAlbum({{albumID}})">Delete</button></td>
                 <td><a href="/albums/{{albumID}}">Update</a></td>
             </tr>
@@ -29,7 +29,7 @@
 
     <form id="addalbum" action="/albums" method="post">
     Album Title: <input type="text" name="albumTitle"><br>
-    Artist: <select name="primaryArtist">
+    Artist: <select name="artID">
         {{#each artists}}
         <option value="{{artistID}}">{{primaryArtist}}</option>
         {{/each}}

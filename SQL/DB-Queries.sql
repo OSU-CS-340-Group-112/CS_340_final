@@ -22,10 +22,8 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
     `artID` int(11) NOT NULL,
-    `featuredArtist` varchar(255) NOT NULL,
     `albumTitle` varchar(255) NOT NULL,
     `albumID` int(11) NOT NULL AUTO_INCREMENT,
-    UNIQUE KEY `featuredArtist` (`featuredArtist`),
     UNIQUE KEY `albumTitle` (`albumTitle`),
     PRIMARY KEY (`albumID`),
     KEY `artID` (`artID`),
@@ -35,9 +33,9 @@ CREATE TABLE `album` (
 #insert album
 LOCK TABLES `album` WRITE;
 INSERT INTO `album` VALUES
-    (1, 'JOJI', 'NECTAR', 1),
-    (2, 'DRAKE', 'VIEWS', 2),
-    (3, 'KENDRICK LAMAR', 'DAMN', 3);
+    (1, 'NECTAR', 1),
+    (2, 'VIEWS', 2),
+    (3, 'DAMN', 3);
 UNLOCK TABLES;
 
 #table: song
