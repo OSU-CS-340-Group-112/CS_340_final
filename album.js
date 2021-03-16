@@ -41,7 +41,7 @@ module.exports = function(){
 
     /* Selector for one album */
     function getAlbum(res, mysql, context, albumID, complete){
-        var sql = "SELECT albumID, originalArtist, albumTitle FROM album WHERE albumID = ?";
+        var sql = "SELECT albumID, artID, albumTitle FROM album WHERE albumID = ?";
         var inserts = [albumID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -115,8 +115,8 @@ module.exports = function(){
     /* Route to update an album */
     router.put('/:albumID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE album SET originalArtist=?, albumTitle=? WHERE albumID=?";
-        var inserts = [req.body.originalArtist, req.body.albumTitle, req.params.albumID];
+        var sql = "UPDATE album SET artID=?, albumTitle=? WHERE albumID=?";
+        var inserts = [req.body.artID, req.body.albumTitle, req.params.albumID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));

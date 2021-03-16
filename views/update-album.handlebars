@@ -17,13 +17,12 @@
 </script>
 
 <h1>Update {{album.originalArtist}} {{album.albumTitle}}:</h1>
-<form id="update-album" action="/album" method="post">
-    original Artist: <input type="text" name="originalArtist" value="{{album.originalArtist}}"><br>
-    Album Title: <input type="text" name="albumTitle" value="{{album.albumTitle}}"><br>
-    original Artist: <select name="originalArtist" id="artist-selector">
+<form id="update-album" action="/albums" method="post">
+    Artist: <select name="artID" id="artist-selector">
         {{#each artists}}
         <option value="{{artistID}}">{{primaryArtist}}</option>
         {{/each}}
-    </select>
+    </select><br>
+    Album Title: <input type="text" name="albumTitle" value="{{album.albumTitle}}"><br>
 </form>
-<button id="update"onclick="selectArtist({{artistID}}) updateAlbum({{album.albumID}})">Update</button>
+<button id="update"onclick="selectArtist({{album.artID}}); updateAlbum({{albumID}})">Update</button>
