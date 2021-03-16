@@ -159,6 +159,22 @@ module.exports = function(){
             }
         });
     });
+    
+    /* route to get a song by name */
+    router.get('/search/:s', function(req,res){
+        callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletesong.js","searchSong.js"];
+        var mysql = req.app.get('mysql');
+        getSongWithName(req,res,mysql,context,complete);
+        getAlbums(res,mysql,context,complete);
+        function complete(){
+            callbackcount++;
+            if(callbackcount >= 2){
+                res.render('songs', context);
+            }
+        }
+    });
 
 
     return router;
