@@ -1,4 +1,4 @@
-module.exports = function()
+module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
@@ -60,3 +60,4 @@ module.exports = function()
             }
         }
     });
+}();
