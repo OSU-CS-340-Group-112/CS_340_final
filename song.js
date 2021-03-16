@@ -51,7 +51,7 @@ module.exports = function(){
     }
     
     /* Selector for search */
-    function getSongWithName(reg,res,mysql,context,complete){
+    function getSongWithName(req,res,mysql,context,complete){
         var query = "SELECT songID, songTitle, writingCredit, album.albumID as alID FROM song INNER JOIN album ON alID = album.albumID WHERE song.songTitle LIKE " + mysql.pool.escape(req.params.s + '%');
         console.log(query)
         
@@ -162,15 +162,15 @@ module.exports = function(){
     
     /* route to get a song by name */
     router.get('/search/:s', function(req,res){
-        callbackCount = 0;
+        var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deletesong.js","searchSong.js"];
         var mysql = req.app.get('mysql');
         getSongWithName(req,res,mysql,context,complete);
         getAlbums(res,mysql,context,complete);
         function complete(){
-            callbackcount++;
-            if(callbackcount >= 2){
+            callbackCount++;
+            if(callbackCount >= 2){
                 res.render('songs', context);
             }
         }
