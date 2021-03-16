@@ -49,6 +49,22 @@ module.exports = function(){
             complete();
         });
     }
+    
+    /* Selector for search */
+    function getSongWithName(reg,res,mysql,context,complete){
+        var query = "SELECT songID, songTitle, writingCredit, album.albumID as alID FROM song INNER JOIN album ON alID = album.albumID WHERE song.songTitle LIKE " + mysql.pool.escape(req.params.s + '%');
+        console.log(query)
+        
+        mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.songs = results;
+            complete();
+            
+        });
+    }
     /* 
         ====================DISPLAY==================== 
         =============================================== 
