@@ -29,7 +29,7 @@ module.exports = function()
     }
 
     /* Get Albums with their Genres */
-    function getAlbumsWithGenres(res, myqsl, context, complete){
+    function getAlbumsWithGenres(res, mysql, context, complete){
         sql = "SELECT albID, genID, FROM album INNER JOIN genreIT on album.albumID = genreIT.albID INNER JOIN genre on genre.genreID = genreIT.genID ORDER BY albumTitle, genreName"
         mysql.pool.query(sql, function(error, results, fields){
             if(error){
@@ -41,3 +41,22 @@ module.exports = function()
             complete();
         });
     }
+
+
+    /* List Albums with Genres */
+    router.get('/', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletealbum.js"];
+        var mysql = req.app.get('mysql');
+        
+        getAlbums(res,mysql,context,complete);
+        getGenres(res,mysql,context,complete);
+        getAlbumsWithGenres(res,mysql,context,complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 3){
+                res.render('intersectPage',context);
+            }
+        }
+    });

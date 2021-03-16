@@ -3,7 +3,21 @@
       <div id="landing-pg">
       <h1>Genre Intersection Table</h1>
       <h3>This page allows access to the Genre Intersection table database entity.</h3>
-      <button class="btn btn-dark">Display all Genre/Album pairs</button>
-      <button class="btn btn-dark">Remove a Relationship</button>
     </center>
 </div>
+
+<table>
+  <thead>
+    <th>Album</th>
+    <th>Genre</th>
+  </thead>
+
+  <tbody>
+    {{#each albums_with_genres}}
+    <tr>
+      <td>{{albumTitle}}</td>
+      <td>{{genreName}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
