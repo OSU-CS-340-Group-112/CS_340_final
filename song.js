@@ -52,7 +52,7 @@ module.exports = function(){
     
     /* Selector for search */
     function getSongWithName(req,res,mysql,context,complete){
-        var query = "SELECT songID, songTitle, writingCredit, album.albumID as alID FROM song INNER JOIN album ON alID = album.albumID WHERE song.songTitle LIKE " + mysql.pool.escape(req.params.s + '%');
+        var query = "SELECT songID, songTitle, album.albumID as alID, runTime, writingCredit FROM song INNER JOIN album ON alID = album.albumID WHERE song.songTitle LIKE " + mysql.pool.escape(req.params.s);
         console.log(query)
         
         mysql.pool.query(query, function(error, results, fields){
@@ -60,7 +60,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.songs = results;
+            context.song = results;
             complete();
             
         });
@@ -164,14 +164,14 @@ module.exports = function(){
     router.get('/search/:s', function(req,res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletesong.js","searchSong.js"];
+        context.jsscripts = ["updatesong.js","deletesong.js","searchSong.js"];
         var mysql = req.app.get('mysql');
         getSongWithName(req,res,mysql,context,complete);
         getAlbums(res,mysql,context,complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('songs', context);
+                res.render('songsPage', context);
             }
         }
     });
