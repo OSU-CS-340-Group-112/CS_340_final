@@ -103,7 +103,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/song');
+                res.redirect('/songs');
             }
         });
     });
