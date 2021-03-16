@@ -12,6 +12,9 @@ module.exports = function(){
         =============================================== 
     */
 
+    /* Selector for all Albums */
+
+
     /* Selector for All Genres */ 
     function getGenres(res,mysql,context,complete){
         mysql.pool.query("SELECT genreID, genreName FROM genre",function(error,results,fields){
