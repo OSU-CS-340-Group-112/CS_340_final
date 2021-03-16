@@ -11,10 +11,22 @@ module.exports = function(){
         ====================SELECT===================== 
         =============================================== 
     */
+    /* Selector for All albums */ 
+    function getAlbums(res,mysql,context,complete){
+        mysql.pool.query("SELECT albumID, albumTitle FROM album",function(error,results,fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.albums = results;
+            complete(); 
+        });
+    }
+    
 
     /* Selector for All songs */ 
     function getSongs(res,mysql,context,complete){
-        mysql.pool.query("SELECT songID, songTitle, alID, runTime, writingCredit FROM song",function(error,results,fields){
+        mysql.pool.query("SELECT songID, songTitle, album.albumTitle AS alID, runTime, writingCredit FROM song INNER JOIN album ON alID = album.albumID",function(error,results,fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -49,9 +61,10 @@ module.exports = function(){
         context.jsscripts = ["deletesong.js"];
         var mysql = req.app.get('mysql');
         getSongs(res,mysql,context,complete);
+        getAlbums(res,mysql,context,complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('songsPage',context);
             }
         }
