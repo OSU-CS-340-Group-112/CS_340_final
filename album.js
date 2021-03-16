@@ -81,9 +81,10 @@ module.exports = function(){
         context.jsscripts = ["updatealbum.js"];
         var mysql = req.app.get('mysql');
         getAlbum(res, mysql, context, req.params.albumID, complete);
+        getArtists(res,mysql,context,complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('update-album',context);
             }
         }
