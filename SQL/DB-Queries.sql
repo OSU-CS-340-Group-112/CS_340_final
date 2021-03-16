@@ -6,9 +6,8 @@ CREATE TABLE `artist` (
     `primaryArtist` varchar(255) NOT NULL,
     `recordLabel` varchar(255) NOT NULL,
     PRIMARY KEY (`artistID`),
-    UNIQUE KEY `primaryArtist` (`primaryArtist`),
-    UNIQUE KEY `recordLabel` (`recordLabel`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+    UNIQUE KEY `primaryArtist` (`primaryArtist`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #insert artists
 LOCK TABLES `artist` WRITE;
@@ -28,7 +27,7 @@ CREATE TABLE `album` (
     PRIMARY KEY (`albumID`),
     KEY `artID` (`artID`),
     CONSTRAINT `album_ibfk1` FOREIGN KEY (`artID`) REFERENCES `artist` (`artistID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #insert album
 LOCK TABLES `album` WRITE;
@@ -50,7 +49,7 @@ CREATE TABLE `song` (
     PRIMARY KEY (`songID`),
     KEY `alID` (`alID`),
     CONSTRAINT `song_ibfk1` FOREIGN KEY (`alID`) REFERENCES `album` (`albumID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 #insert song
 LOCK TABLES `song` WRITE;
@@ -73,13 +72,14 @@ CREATE TABLE `genre` (
     `genreName` varchar(255) NOT NULL,
     PRIMARY KEY (`genreID`),
     UNIQUE KEY `genreName` (`genreName`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #insert genre
 LOCK TABLES `genre` WRITE;
 INSERT INTO `genre` VALUES
     (1, 'RAP'),
-    (2, 'POP');
+    (2, 'POP'),
+    (3, 'INDIE');
 UNLOCK TABLES;
 
 #table: genre join table
@@ -91,7 +91,7 @@ CREATE TABLE `genreIT` (
     KEY `genID` (`genID`),
     CONSTRAINT `genre_ibfk1` FOREIGN KEY (`albID`) REFERENCES `album` (`albumID`),
     CONSTRAINT `genre_ibfk2` FOREIGN KEY (`genID`) REFERENCES `genre` (`genreID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 #insert genre-join
 LOCK TABLES `genreIT` WRITE;
