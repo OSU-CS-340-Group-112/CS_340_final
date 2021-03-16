@@ -1,4 +1,5 @@
 module.exports = function(){
+
     var express = require('express');
     var router = express.Router();
 
@@ -43,8 +44,8 @@ module.exports = function(){
     }
 
 
-    /* List Albums with Genres */
-    router.get('/', function(req, res){
+    /* Route to display Albums with Genres */
+    router.get('/', function(req,res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deletealbum.js"];
@@ -60,4 +61,6 @@ module.exports = function(){
             }
         }
     });
+    
+    return router;
 }();

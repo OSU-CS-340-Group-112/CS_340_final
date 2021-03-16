@@ -45,6 +45,9 @@ app.use('/genres',require('./genre.js'));
 /* Song Page Response */
 app.use('/songs',require('./song.js'));
 
+/* Intersect Page Response */
+app.use('/intersect',require('./album_genres.js'));
+
 /* 404 page response */
 app.get('*',function(req,res) {
     res.status(404).render('404');
