@@ -95,8 +95,8 @@ module.exports = function(){
     router.post('/', function(req,res){
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO song (songTitle, runTime, writingCredit) VALUES (?,?,?)";
-        var inserts = [req.body.songTitle, req.body.runTime, req.body.writingCredit];
+        var sql = "INSERT INTO song (songTitle, runTime, writingCredit, alID) VALUES (?,?,?,?)";
+        var inserts = [req.body.songTitle, req.body.runTime, req.body.writingCredit, req.body.alID];
         sql  = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error));

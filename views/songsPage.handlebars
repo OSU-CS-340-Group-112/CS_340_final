@@ -35,5 +35,9 @@
     Song Title: <input type="text" name="songTitle"><br>
     Run Time (in seconds): <input type="number" name="runTime"><br>
     Writing Credit: <input type="text" name="writingCredit"><br>
+    Album Title: <select name="alID">
+        {{#each albums}}
+        <option value="{{albumID}}">{{albumTitle}}</option>
+        {{/each}}
     <input type="submit" value="Submit">
     </form>
