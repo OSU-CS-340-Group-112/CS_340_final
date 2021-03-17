@@ -80,6 +80,23 @@ module.exports = function(){
         });
     });
 
+    /* Delete an Album-Genre Relationship */
+    router.delete('/albID/:albID/genID/:genID',function(req,res){
+        console.log(req.params.albID)
+        console.log(req.params.genID)
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM genreIT WHERE albID = ? AND genID = ?";
+        var inserts = [req.params.albID, req.params.genID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                console.log(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(202).end();
+            }
+        });
+    });
 
 
     return router;
