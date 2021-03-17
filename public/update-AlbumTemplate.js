@@ -29,10 +29,10 @@ templates['update-album'] = template({"1":function(container,depth0,helpers,part
     + ((stack1 = lookupProperty(helpers,"each").call(alias3,(depth0 != null ? lookupProperty(depth0,"artists") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":22,"column":8},"end":{"line":24,"column":17}}})) != null ? stack1 : "")
     + "    </select><br>\n    Album Title: <input type=\"text\" name=\"albumTitle\" value=\""
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"album") : depth0)) != null ? lookupProperty(stack1,"albumTitle") : stack1), depth0))
-    + "\"><br>\n</form>\n<button id=\"update\"onclick=\"selectArtist("
+    + "\"><br>\n</form>\n<button id=\"update\"onclick=\"updateAlbum("
+    + alias2(((helper = (helper = lookupProperty(helpers,"albumID") || (depth0 != null ? lookupProperty(depth0,"albumID") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias3,{"name":"albumID","hash":{},"data":data,"loc":{"start":{"line":28,"column":40},"end":{"line":28,"column":51}}}) : helper)))
+    + "); selectArtist("
     + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"album") : depth0)) != null ? lookupProperty(stack1,"artID") : stack1), depth0))
-    + "); updateAlbum("
-    + alias2(((helper = (helper = lookupProperty(helpers,"albumID") || (depth0 != null ? lookupProperty(depth0,"albumID") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias3,{"name":"albumID","hash":{},"data":data,"loc":{"start":{"line":28,"column":71},"end":{"line":28,"column":82}}}) : helper)))
     + ")\">Update</button>\n";
 },"useData":true});
 })();

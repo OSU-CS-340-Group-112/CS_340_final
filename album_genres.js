@@ -31,7 +31,7 @@ module.exports = function(){
 
     /* Get Albums with their Genres */
     function getAlbumsWithGenres(res, mysql, context, complete){
-        sql = "SELECT albID, genID, FROM album INNER JOIN genreIT on album.albumID = genreIT.albID INNER JOIN genre on genre.genreID = genreIT.genID ORDER BY albumTitle, genreName"
+        sql = "SELECT album.albumTitle AS albID, genre.genreName AS genID FROM album INNER JOIN genreIT on album.albumID = genreIT.albID INNER JOIN genre on genre.genreID = genreIT.genID ORDER BY albumTitle, genreName"
         mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -62,5 +62,25 @@ module.exports = function(){
         }
     });
     
+
+    /* Add an Album-Genre Relationship */
+    router.post('/', function(req,res){
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO genreIT (albID, genID) VALUES (?,?)";
+        var inserts = [req.body.albID, req.body.genID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                console.log(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/intersect');
+            }
+        });
+    });
+
+
+
     return router;
 }();

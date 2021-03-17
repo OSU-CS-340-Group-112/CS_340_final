@@ -8,16 +8,30 @@
 
 <table>
   <thead>
-    <th>Album</th>
-    <th>Genre</th>
+    <th>Album ID</th>
+    <th>Genre ID</th>
   </thead>
 
   <tbody>
     {{#each albums_with_genres}}
     <tr>
-      <td>{{albumTitle}}</td>
-      <td>{{genreName}}</td>
+      <td>{{albID}}</td>
+      <td>{{genID}}</td>
     </tr>
     {{/each}}
   </tbody>
 </table>
+
+<form id="addalbum-genre" action="/intersect" method="post">
+    AlbumID: <select name="albID">
+      {{#each albums}}
+      <option value="{{albID}}">{{albumTitle}}</option>
+      {{/each}}
+    </select>
+    Genres: <select name="genID">
+        {{#each genres}}
+        <option value="{{genID}}">{{genreName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit" value="Submit">
+    </form>
